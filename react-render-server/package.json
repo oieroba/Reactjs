@@ -1,0 +1,52 @@
+{
+  "name": "react-render-server",
+  "version": "0.1.0",
+  "description": "A node.js server for server-side rendering Khan Academy react components.",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "ulimit -n 999999 || ulimit -n 2048; nodemon src/main.js -- -p 8080 --log-level=debug",
+    "dev": "nodemon src/main.js -- --dev",
+    "debug": "nodemon src/main.js -- --dev --log-level=debug",
+    "profile": "node-debug -p 8040 --no-preload src/main.js --dev",
+    "serve_local": "nodemon src/main.js -- --dev",
+    "test": "mocha --reporter spec 'src/*_test.js'",
+    "deploy": "./deploy.sh",
+    "deploy:docker": "DOCKER=1 ./deploy.sh",
+    "set_default": "./set_default.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Khan/react-render-server.git"
+  },
+  "author": "Jamie Wong <jamie.wong@khanacademy.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Khan/react-render-server/issues"
+  },
+  "homepage": "https://github.com/Khan/react-render-server#readme",
+  "dependencies": {
+    "argparse": "^1.0.3",
+    "body-parser": "^1.14.2",
+    "express": "^4.13.3",
+    "express-winston": "^1.2.0",
+    "graphite-udp": "^1.0.0",
+    "jsdom": "^7.2.2",
+    "lru-cache": "^4.0.0",
+    "nodemon": "^1.8.1",
+    "react": "0.14.0",
+    "react-dom": "0.14.0",
+    "superagent": "^1.6.1",
+    "winston": "^2.1.1"
+  },
+  "devDependencies": {
+    "chai": "^3.4.1",
+    "mocha": "^2.3.4",
+    "nock": "^4.0.0",
+    "node-inspector": "^0.12.5",
+    "sinon": "^1.17.2",
+    "supertest": "^1.1.0"
+  },
+  "engines": {
+    "node": "^4.2.1"
+  }
+}

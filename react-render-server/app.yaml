@@ -1,0 +1,41 @@
+module: react-render
+runtime: nodejs
+vm: true
+
+# TODO(jlfwong): Figure out what the right scaling policy is
+automatic_scaling:
+  min_num_instances: 8
+  max_num_instances: 40
+  cool_down_period_sec: 60
+  cpu_utilization:
+    target_utilization: 0.6
+
+resources:
+  cpu: 1
+  memory_gb: 1
+  disk_size_gb: 10
+
+skip_files:
+####
+# Backup files/etc -- created by editors, but not part of the source tree.
+- ^(.*/)?#.*#$
+- ^(.*/)?.*~$
+- ^(.*/)?.*\.orig$
+- ^(.*/)?.*\.rej$
+####
+# Ignore all .-prefixed files (.git, .gitignore, .arcconfig, etc.)
+- ^(.*/)?\..*$
+####
+# Dev-only scripts
+- ^deploy.sh$
+- ^set_default.sh$
+- ^tools$
+####
+# Other dev-specific files
+- ^README.md$
+- ^lint_blacklist.txt$
+####
+# Tests
+- ^src/.*_test.js$
+- ^src/testdata/.*$
+- ^node_modules/.*/test$
